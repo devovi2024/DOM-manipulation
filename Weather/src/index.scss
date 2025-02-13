@@ -1,0 +1,96 @@
+// Variables
+$primary-color: #3498db;
+$secondary-color: #2c3e50;
+$text-color: #333;
+$bg-color: #f4f4f4;
+$font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+// Reset and base styles
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family;
+    color: $text-color;
+    background-color: $bg-color;
+    line-height: 1.6;
+}
+
+// Header
+.header {
+    background-color: $primary-color;
+    color: white;
+    padding: 1.5rem 0;
+    text-align: center;
+    box-shadow: $box-shadow;
+
+    &__title {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+}
+
+// Main section
+.main {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+// Search section
+.search-section {
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: $box-shadow;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &__input {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+            border-color: $primary-color;
+        }
+    }
+
+    &__button {
+        background-color: $primary-color;
+        border: none;
+        padding: 0.75rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: darken($primary-color, 10%);
+        }
+    }
+
+    &__icon {
+        width: 24px;
+        height: 24px;
+        color: white;
+    }
+}
