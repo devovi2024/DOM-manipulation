@@ -4,26 +4,272 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temperature App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet"> <!-- Sci-Fi Font -->
+    <style>
+        /* Sci-Fi Theme */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            gap: 2vh;
+            margin: 0;
+            padding: 0;
+        }
 
+
+
+        .main {
+            background-color: #111;
+            border: 2px solid #00ffcc;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+            padding: 1rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .search-box {
+            background-color: #222;
+            border: 2px solid #00ffcc;
+            border-radius: 24px;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+            padding: 0.5rem;
+        }
+
+        .search-box__input {
+            background-color: transparent;
+            color: #00ffcc;
+            border: none;
+            outline: none;
+            width: 100%;
+        }
+
+        .search-box__button {
+            background-color: #00ffcc;
+            color: #000;
+            border: none;
+            transition: background-color 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .search-box__button:hover {
+            background-color: #00ccaa;
+        }
+
+        .weather-icon {
+            animation: float 3s ease-in-out infinite;
+            width: 80px;
+            height: 80px;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .map-container {
+            height: 150px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 1rem;
+            border: 2px solid #00ffcc;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+        }
+
+        .detail-icon {
+            color: #00ffcc;
+        }
+
+        .detail-value {
+            color: #00ffcc;
+        }
+
+        .detail-label {
+            color: #aaa;
+        }
+
+        /* Glowing Text */
+        .glow {
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+        }
+
+        /* Clock Styling */
+        .clock {
+            font-size: 1.2rem;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-black text-white">
     <header class="header">
-        <h1 class="header__title">Weather Finder</h1>
+
+        <div class="clock text-center mt-1" id="clock">Loading time...</div>
     </header>
-    <main class="main">
-        <section class="search-section">
-            <div class="search-container">
-                <div class="search-box">
-                    <input type="text" class="search-box__input" placeholder="Enter city name..." spellcheck="false">
-                    <button class="search-box__button">
-                        <svg class="search-box__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                    </button>
+    <main class="container mx-auto px-4">
+        <section class="max-w-md mx-auto main">
+            <div class="flex items-center search-box">
+                <input type="text" id="cityInput" class="flex-grow px-4 py-2 search-box__input" placeholder="Enter city name..." spellcheck="false">
+                <button id="searchButton" class="search-box__button">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Weather Display Section -->
+            <div class="text-center mt-4">
+                <img id="weatherIcon" src="https://via.placeholder.com/100" class="weather-icon mx-auto" alt="Weather Icon">
+                <h1 id="temperature" class="text-4xl font-bold mt-2 glow">22°C</h1>
+                <h2 id="cityName" class="text-xl mt-1 glow">New York</h2>
+            </div>
+
+            <!-- Weather Details Section -->
+            <div class="grid grid-cols-2 gap-2 mt-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-tint detail-icon text-xl"></i> <!-- Humidity Icon -->
+                    <div>
+                        <p id="humidity" class="text-lg font-semibold detail-value">50%</p>
+                        <p class="detail-label">Humidity</p>
+                    </div>
                 </div>
+
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-wind detail-icon text-xl"></i> <!-- Wind Speed Icon -->
+                    <div>
+                        <p id="windSpeed" class="text-lg font-semibold detail-value">15 km/h</p>
+                        <p class="detail-label">Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map-container">
+                <iframe id="map" src="https://www.openstreetmap.org/export/embed.html?bbox=0,0,0,0&layer=mapnik" style="border: none; width: 100%; height: 100%;"></iframe>
             </div>
         </section>
     </main>
+
+    <script>
+        const apiKey = '827eaec47f23668cf6333fb029b3d04d'; // Your API key
+        const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?units=metric&q=';
+        const mapIframe = document.getElementById('map');
+
+        const cityInput = document.getElementById('cityInput');
+        const searchButton = document.getElementById('searchButton');
+        const weatherIcon = document.getElementById('weatherIcon');
+        const temperature = document.getElementById('temperature');
+        const cityName = document.getElementById('cityName');
+        const humidity = document.getElementById('humidity');
+        const windSpeed = document.getElementById('windSpeed');
+        const body = document.body;
+
+        // Function to fetch weather data
+        const fetchWeather = async (city) => {
+            try {
+                const response = await fetch(`${apiUrl}${city}&appid=${apiKey}`);
+                if (!response.ok) {
+                    throw new Error('City not found');
+                }
+                const data = await response.json();
+
+                // Update the UI with the fetched data
+                cityName.textContent = data.name;
+                temperature.textContent = `${Math.round(data.main.temp)}°C`;
+                humidity.textContent = `${data.main.humidity}%`;
+                windSpeed.textContent = `${data.wind.speed} km/h`;
+
+                // Update the weather icon based on weather condition
+                updateWeatherIcon(data.weather[0].main);
+
+                // Update the map with the city's coordinates
+                updateMap(data.coord.lat, data.coord.lon);
+
+            } catch (error) {
+                alert('City not found. Please try again.');
+                console.error(error);
+            }
+        };
+
+        // Function to update weather icon based on weather condition
+        const updateWeatherIcon = (weatherCondition) => {
+    let iconUrl = '';
+    switch (weatherCondition.toLowerCase()) {
+        case 'clear':
+            iconUrl = 'https://openweathermap.org/img/wn/01d.png'; // Clear sky
+            break;
+        case 'clouds':
+            iconUrl = 'https://openweathermap.org/img/wn/03d.png'; // Clouds
+            break;
+        case 'rain':
+            iconUrl = 'https://openweathermap.org/img/wn/09d.png'; // Rain
+            break;
+        case 'thunderstorm':
+            iconUrl = 'https://openweathermap.org/img/wn/11d.png'; // Thunderstorm
+            break;
+        case 'snow':
+            iconUrl = 'https://openweathermap.org/img/wn/13d.png'; // Snow
+            break;
+        case 'mist':
+        case 'haze':
+        case 'fog':
+            iconUrl = 'https://openweathermap.org/img/wn/50d.png'; // Mist/Haze/Fog
+            break;
+        default:
+            iconUrl = 'https://via.placeholder.com/100'; // Default placeholder
+    }
+    document.getElementById('weatherIcon').src = iconUrl;
+    document.getElementById('weatherIcon').alt = weatherCondition;
+};
+
+        // Function to update the map with the city's coordinates
+        const updateMap = (lat, lon) => {
+            const bbox = `${lon - 0.1},${lat - 0.1},${lon + 0.1},${lat + 0.1}`; 
+            mapIframe.src = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik`;
+        };
+
+        // Function to update the real-time clock
+        const updateClock = () => {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const clockElement = document.getElementById('clock');
+            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+        };
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call to display the clock immediately
+
+        // Event listener for the search button
+        searchButton.addEventListener('click', () => {
+            const city = cityInput.value.trim();
+            if (city) {
+                fetchWeather(city);
+            } else {
+                alert('Please enter a city name.');
+            }
+        });
+
+        // Fetch Dhaka weather when the page loads
+        window.onload = () => {
+            fetchWeather('Dhaka');
+        };
+    </script>
 </body>
 </html>
