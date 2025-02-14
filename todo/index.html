@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0D1031] text-white font-sans">
+    <div class="max-w-md mx-auto p-4">
+        <div class="flex justify-between items-center mb-4">
+            <div>
+                <p class="text-lg">Hello</p>
+                <h1 class="text-xl font-bold">Ovi Bhai</h1>
+            </div>
+            <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-full w-10 h-10">
+        </div>
+
+        <div class="relative mb-6">
+            <input type="text" placeholder="Search" class="w-full p-3 rounded-lg bg-[#1A1C48] text-white focus:outline-none">
+        </div>
+
+        <h2 class="text-lg font-semibold mb-3">Category</h2>
+        <div class="grid grid-cols-3 gap-3 mb-6">
+            <div class="bg-pink-500 p-4 rounded-xl text-center">
+                <p class="text-sm font-semibold">Design</p>
+                <p class="text-xs">• 5 task</p>
+                <button class="mt-2 text-xl">+</button>
+            </div>
+            <div class="bg-blue-500 p-4 rounded-xl text-center">
+                <p class="text-sm font-semibold">Learning</p>
+                <p class="text-xs">• 3 Task</p>
+                <button class="mt-2 text-xl">+</button>
+            </div>
+            <div class="bg-yellow-500 p-4 rounded-xl text-center">
+                <p class="text-sm font-semibold">Meeting</p>
+                <p class="text-xs">• 1 Task</p>
+                <button class="mt-2 text-xl">+</button>
+            </div>
+        </div>
+
+        <h2 class="text-lg font-semibold mb-3">Today's Task</h2>
+        <div class="bg-white text-black p-4 rounded-xl">
+            <div class="space-y-4">
+                <div class="flex justify-between items-center p-2 bg-gray-100 rounded-lg">
+                    <div class="flex items-center space-x-2">
+                        <div class="bg-green-400 p-2 rounded-full"></div>
+                        <p class="font-medium">Sketching</p>
+                    </div>
+                    <p class="text-xs">2 Completed</p>
+                    <span class="bg-green-200 text-green-800 px-2 py-1 text-sm rounded-full">4</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-gray-100 rounded-lg">
+                    <div class="flex items-center space-x-2">
+                        <div class="bg-purple-400 p-2 rounded-full"></div>
+                        <p class="font-medium">Wireframing</p>
+                    </div>
+                    <p class="text-xs">0 Completed</p>
+                    <span class="bg-purple-200 text-purple-800 px-2 py-1 text-sm rounded-full">2</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-gray-100 rounded-lg">
+                    <div class="flex items-center space-x-2">
+                        <div class="bg-orange-400 p-2 rounded-full"></div>
+                        <p class="font-medium">Visual Design</p>
+                    </div>
+                    <p class="text-xs">4 Completed</p>
+                    <span class="bg-orange-200 text-orange-800 px-2 py-1 text-sm rounded-full">4</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="fixed bottom-5 right-5 bg-purple-500 text-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg cursor-pointer">
+            <span class="text-2xl">+</span>
+        </div>
+    </div>
+</body>
+</html>
