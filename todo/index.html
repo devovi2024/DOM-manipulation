@@ -20,11 +20,6 @@
             </div>
         </div>
 
-        <!-- Search Bar -->
-        <div class="relative mb-6">
-            <input type="text" id="search" placeholder="Search" class="w-full p-3 rounded-lg bg-[#1A1C48] text-white focus:outline-none">
-        </div>
-
         <!-- Category Section -->
         <div>
             <h2 class="text-lg font-semibold mb-3">Category</h2>
@@ -32,11 +27,51 @@
         </div>
 
         <!-- Task Section -->
-        <div>
-            <h2 class="text-lg font-semibold mb-3">Today's Task</h2>
-            <div class="bg-white text-black p-4 rounded-xl">
-                <p id="totalTasks" class="text-lg font-semibold mb-3">Total Tasks: 0</p>
-                <div id="taskList" class="space-y-4"></div>
+        <div class="space-y-6">
+            <!-- Header Section -->
+            <div class="flex items-center justify-between bg-[#1A1C48] p-5 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-white">Today's Task</h2>
+                <input 
+                    type="text" 
+                    id="search" 
+                    placeholder="🔍" 
+                    class="w-14 h-14 text-center rounded-full bg-white text-black placeholder-gray-500 
+                    focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md"
+                >
+            </div>
+
+            <!-- Task Container -->
+            <div class="bg-gradient-to-br from-blue-50 to-gray-100 text-gray-900 p-6 rounded-2xl shadow-2xl max-w-md mx-auto">
+                <!-- Header Section -->
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-xl font-bold flex items-center space-x-2">
+                        <span class="text-blue-500 text-2xl">📌</span>
+                        <span>Manage Tasks</span>
+                    </div>
+                    <button onclick="addTask()" class="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 transition">
+                        ➕ Add Task
+                    </button>
+                </div>
+
+                <!-- Filter Dropdown -->
+                <div class="mb-4">
+                    <label for="filterDropdown" class="text-lg font-semibold">Filter</label>
+                    <select id="filterDropdown" onchange="filterTasks()" class="mt-2 w-full p-3 border rounded-lg bg-white focus:ring-2 focus:ring-blue-400">
+                        <option value="today">Today</option>
+                        <option value="yesterday">Yesterday</option>
+                        <option value="last_week">Last Week</option>
+                        <option value="last_month">Last Month</option>
+                        <option value="last_year">Last Year</option>
+                    </select>
+                </div>
+
+                <!-- Task Count -->
+                <p id="totalTasks" class="text-lg font-semibold mb-4">Total Tasks: 0</p>
+
+                <!-- Task List -->
+                <div id="taskList" class="space-y-4 bg-white p-4 rounded-lg shadow-md">
+                    <p class="text-gray-500 text-center">No tasks yet. Add one! 📋</p>
+                </div>
             </div>
         </div>
 
@@ -48,5 +83,6 @@
 
     <!-- JavaScript File -->
     <script src="src/index.js"></script>
+    <script src="src/filter.js"></script>
 </body>
 </html>

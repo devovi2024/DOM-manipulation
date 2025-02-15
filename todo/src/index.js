@@ -6,7 +6,11 @@ const defaultCategories = [
 ];
 
 let categories = [...defaultCategories];
-let tasks = [];
+let tasks = [
+    { name: "Design Task 1", category: "Design", completed: 0, total: 1, color: "bg-pink-500", date: new Date().toISOString() },
+    { name: "Learning Task 1", category: "Learning", completed: 0, total: 1, color: "bg-blue-500", date: new Date(new Date().setDate(new Date().getDate() - 1)).toISOString() },
+    { name: "Meeting Task 1", category: "Meeting", completed: 0, total: 1, color: "bg-yellow-500", date: new Date(new Date().setDate(new Date().getDate() - 7)).toISOString() }
+];
 let selectedCategory = null;
 
 // 2. DOM Elements
@@ -58,6 +62,7 @@ function renderTasks() {
         `;
         taskContainer.appendChild(div);
     });
+    document.getElementById("totalTasks").textContent = `Total Tasks: ${tasks.length}`;
 }
 
 // 5. Category Selection
@@ -80,7 +85,8 @@ function addTask() {
             category: selectedCategory.name, 
             completed: 0, 
             total: 1, 
-            color: selectedCategory.color 
+            color: selectedCategory.color,
+            date: new Date().toISOString() // Add date property
         };
         tasks.push(newTask);
 
@@ -108,19 +114,24 @@ function searchTasks() {
 
 function renderFilteredTasks(filteredTasks) {
     taskContainer.innerHTML = "";
-    filteredTasks.forEach(task => {
-        const div = document.createElement("div");
-        div.className = "flex justify-between items-center p-2 bg-gray-100 rounded-lg";
-        div.innerHTML = `
-            <div class="flex items-center space-x-2">
-                <div class="${task.color} w-3 h-3 rounded-full"></div>
-                <p class="font-medium">${task.name} (${task.category})</p>
-            </div>
-            <p class="text-xs">${task.completed} Completed</p>
-            <span class="px-2 py-1 text-sm rounded-full bg-gray-200">${task.total}</span>
-        `;
-        taskContainer.appendChild(div);
-    });
+    if (filteredTasks.length === 0) {
+        taskContainer.innerHTML = `<p class="text-gray-500 text-center">No tasks found. 📋</p>`;
+    } else {
+        filteredTasks.forEach(task => {
+            const div = document.createElement("div");
+            div.className = "flex justify-between items-center p-2 bg-gray-100 rounded-lg";
+            div.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <div class="${task.color} w-3 h-3 rounded-full"></div>
+                    <p class="font-medium">${task.name} (${task.category})</p>
+                </div>
+                <p class="text-xs">${task.completed} Completed</p>
+                <span class="px-2 py-1 text-sm rounded-full bg-gray-200">${task.total}</span>
+            `;
+            taskContainer.appendChild(div);
+        });
+    }
+    document.getElementById("totalTasks").textContent = `Total Tasks: ${filteredTasks.length}`;
 }
 
 // 8. Event Listeners
