@@ -4,47 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>my Today's</title>
+    <title>My Today's</title>
 </head>
 <body class="bg-[#0D1031] text-white font-sans">
 
-    <section>
-        <div class="flex justify-between items-center mb-4" >
-            <div >
+    <section class="max-w-md mx-auto p-4">
+        <!-- Header Section -->
+        <div class="flex justify-between items-center mb-4">
+            <div>
                 <p class="text-lg">Hello</p>
-                <h1 class="text-xl font-bold ">Ovi bhai..</h1>
+                <h1 class="text-xl font-bold">Ovi Bhai..</h1>
             </div>
             <div>
-                <img src="https://i.ibb.co.com/kgK2mjNw/person.png" class="rounded-full w-10 h-10" alt="">
+                <img src="https://i.ibb.co/kgK2mjN/person.png" class="rounded-full w-10 h-10" alt="Profile Picture">
             </div>
         </div>
 
-
+        <!-- Search Bar -->
         <div class="relative mb-6">
             <input type="text" id="search" placeholder="Search" class="w-full p-3 rounded-lg bg-[#1A1C48] text-white focus:outline-none">
         </div>
 
-
+        <!-- Category Section -->
         <div>
-            <h2 class="text-lg font-semibold mb-3 ">Category</h2>
-            <div id="categories" class="grid grid-cols-3 gap-3 mb-6">
-            </div>
+            <h2 class="text-lg font-semibold mb-3">Category</h2>
+            <div id="categories" class="grid grid-cols-3 gap-3 mb-6"></div>
         </div>
 
-
+        <!-- Task Section -->
         <div>
-            <h2>Today's Task</h2>
+            <h2 class="text-lg font-semibold mb-3">Today's Task</h2>
             <div class="bg-white text-black p-4 rounded-xl">
-                <div id="taskList" class="space-y-4">
-                </div>
+                <p id="totalTasks" class="text-lg font-semibold mb-3">Total Tasks: 0</p>
+                <div id="taskList" class="space-y-4"></div>
             </div>
         </div>
+
+        <!-- Floating Add Task Button -->
         <div id="addTaskBtn" class="fixed bottom-5 right-5 bg-purple-500 text-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg cursor-pointer">
             <span class="text-2xl">+</span>
         </div>
     </section>
-    
 
+    <!-- JavaScript File -->
     <script src="src/index.js"></script>
 </body>
 </html>
