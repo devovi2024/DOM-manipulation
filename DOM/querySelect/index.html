@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query Select</title>
+</head>
+<body>
+    <button onclick="location.reload()">🔄</button>
+
+    <h1>Welcome <span class="title">Bhai</span></h1>
+    <button onclick="updateTitle()">Change Wlc</button>
+
+    <script>
+        function updateTitle() {
+            let title = document.querySelector('.title');
+            title.innerText = "Ovi Bhai"
+        }
+    </script>
+</body>
+</html>
