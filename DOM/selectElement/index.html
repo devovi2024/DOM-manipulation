@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Element</title>
+</head>
+<body>
+    <button onclick="location.reload()">🔄</button>
+
+    
+    <p>Hello, <span id="change">Word</span></p>
+    <button onclick="changeText()">Changed</button>
+
+
+    <script>
+        function changeText() {
+            let p = document.getElementById('change');
+            p.innerText = "Ovi";
+        }
+    </script>
+
+</body>
+</html>
