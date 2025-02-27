@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Remove Classes</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            font-size: 20px;
+            border: 2px solid black;
+            transition: 0.3s;
+        }
+
+        .highlight {
+            background-color: yellow;
+            color: red;
+            border: 3px solid blue;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="box" class="box">I am a box</div>
+    <br>
+    <button onclick="addClass()">Add Class</button>
+    <button onclick="removeClass()">Remove Class</button>
+    <button onclick="toggleClass()">Toggle Class</button>
+
+    <script>
+        let div = document.getElementById("box");
+
+        function addClass() {
+            div.classList.add("highlight");
+        }
+
+        function removeClass() {
+            div.classList.remove("highlight");
+        }
+
+        function toggleClass() {
+            div.classList.toggle("highlight");
+        }
+    </script>
+
+</body>
+</html>
