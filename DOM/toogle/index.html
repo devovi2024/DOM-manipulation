@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galactic Tech Console</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <h1>🛸 Galactic Tech Console</h1>
+
+    <div class="grid-container">
+        <!-- Stark Nano Helmet -->
+        <div class="grid-item">
+            <button onclick="toggleHelmet()">🦾 Activate Stark Nano Helmet</button>
+            <div id="helmet" class="helmet hidden">
+                🔴 <b>Stark Nano Helmet</b><br>
+                <span>Advanced exo-armor with AI integration.</span>
+            </div>
+        </div>
+
+        <!-- Kyber Saber -->
+        <div class="grid-item">
+            <button onclick="toggleLightsaber()">⚔️ Ignite Kyber Saber</button>
+            <div id="lightsaber" class="lightsaber hidden">
+                💡 <b>Kyber Saber</b><br>
+                <span>Harness the Force to wield this energy blade.</span>
+            </div>
+        </div>
+
+        <!-- Quantum Stealth Cloak -->
+        <div class="grid-item">
+            <button onclick="toggleCloak()">🕶️ Engage Quantum Stealth Mode</button>
+            <div id="cloak" class="cloak hidden">
+                👤 <b>Quantum Stealth Cloak</b><br>
+                <span>Invisible to human eyes and most sensors.</span>
+            </div>
+        </div>
+
+        <!-- Neural-Link HUD -->
+        <div class="grid-item">
+            <button onclick="toggleHUD()">🤖 Activate Neural-Link HUD</button>
+            <div id="aiHUD" class="hud hidden">
+                🌐 <b>Neural-Link HUD</b><br>
+                <span>Augmented reality interface with real-time data.</span>
+            </div>
+        </div>
+
+        <!-- Titan Cyber Arm -->
+        <div class="grid-item">
+            <button onclick="toggleCyberArm()">🦾 Power Up Titan Cyber Arm</button>
+            <div id="cyberArm" class="cyber-arm hidden">
+                ⚡ <b>Titan Cyber Arm</b><br>
+                <span>Enhanced strength with kinetic energy absorption.</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
