@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueryAll with Modal</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        .list-item {
+            font-size: 20px;
+            margin: 5px 0;
+            color: black;
+        }
+        #modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            width: 300px;
+        }
+        .color-btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            text-align: center;
+        }
+        #redBtn { background: red; color: white; }
+        #blueBtn { background: blue; color: white; }
+        #greenBtn { background: green; color: white; }
+        #resetBtn { background: gray; color: white; }
+        #closeModal { background: black; color: white; padding: 10px; margin-top: 10px; border-radius: 5px; width: 100px; }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        #changedColorBtn {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Changed List Items Color</h2>
+    
+    <ul>
+        <li class="list-item">Item 1</li>
+        <li class="list-item">Item 2</li>
+        <li class="list-item">Item 3</li>
+        <li class="list-item">Item 4</li>
+        <li class="list-item">Item 5</li>
+    </ul>
+
+    <button id="changedColorBtn">Change Color</button>
+
+    <!-- Modal & Overlay -->
+    <div id="overlay"></div>
+    <div id="modal">
+        <h3>Choose a Color</h3>
+        <button class="color-btn" id="redBtn"><i class="fas fa-circle"></i></button>
+        <button class="color-btn" id="blueBtn"><i class="fas fa-circle"></i></button>
+        <button class="color-btn" id="greenBtn"><i class="fas fa-circle"></i></button>
+        <button class="color-btn" id="resetBtn"><i class="fas fa-undo"></i></button>
+        <br>
+        <button id="closeModal">x</button>
+    </div>
+
+    <script>
+        let button = document.querySelector("#changedColorBtn");
+        let modal = document.querySelector("#modal");
+        let overlay = document.querySelector("#overlay");
+
+        // Modal Show Function
+        button.addEventListener("click", () => {
+            modal.style.display = "block";
+            overlay.style.display = "block";
+        });
+
+        // Modal Close Function
+        function closeModal() {
+            modal.style.display = "none";
+            overlay.style.display = "none";
+        }
+
+        document.querySelector("#closeModal").addEventListener("click", closeModal);
+
+        // Function to change color and close modal
+        function changeColor(color) {
+            let items = document.querySelectorAll('.list-item');
+            items.forEach((item) => {
+                item.style.color = color;
+            });
+            closeModal(); // Color change korar por modal close hobe
+        }
+
+        // Button Click Events
+        document.querySelector("#redBtn").addEventListener("click", () => changeColor("red"));
+        document.querySelector("#blueBtn").addEventListener("click", () => changeColor("blue"));
+        document.querySelector("#greenBtn").addEventListener("click", () => changeColor("green"));
+        document.querySelector("#resetBtn").addEventListener("click", () => changeColor("black"));
+    </script>
+
+</body>
+</html>
